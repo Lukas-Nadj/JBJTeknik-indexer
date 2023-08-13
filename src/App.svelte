@@ -37,9 +37,10 @@
 			const imageNames = await window.electronApi.getProductImages(productName);
 			loading = false;
 		if (imageNames && imageNames.length > 0) {
+			console.log(imageNames);
 			images = imageNames.map(imageName => ({
 			name: imageName,
-			src: `../public/data/${productName}/${imageName}`
+			src: imageName
 		}));
 		} else {
 			console.warn('No images found for the specified product.');
@@ -53,7 +54,7 @@
   }
 
 	async function deletefile(imagename){
-		let success = window.electronApi.deleteFile("./public/data/"+window.productName+"/"+imagename); 
+		let success = window.electronApi.deleteFile(imagename); 
 		if(success) {
 		for(let i = 0; i < images.length; i++){
 			if(images[i].name===imagename){
@@ -107,7 +108,7 @@
 			{#each images as image (image.src)}
 			<!-- svelte-ignore a11y-mouse-events-have-key-events -->
 			<div class="img">
-			<img src={"./"+image.src} alt={console.log("./"+image.src)} width=250px />
+			<img src={image.src} alt={console.log(image.src)} width=250px />
 			<button id="del" style="background-color:white; position: relative; width: 40px; right: 40px; text-aling: left; bottom: 10px" on:click={ () => {deletefile(image.name);}}>slet</button>
 			</div>
 			{/each}

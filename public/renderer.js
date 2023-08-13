@@ -7,7 +7,7 @@ dropzone.addEventListener("dragover", (e) => {
 
 async function saveFile(filename) {
   if (fileData) {
-    const success = await window.electronApi.saveFile(fileData, "public/data/"+productName+"/"+filename);
+    const success = await window.electronApi.saveFile(fileData, "data/"+productName+"/"+filename);
     if (success) {
       console.log("File saved successfully");
     } else {
@@ -27,9 +27,12 @@ async function handleDrop(event) {
   if (file) {
     fileData = await readFile(file);
   }
-  let img = {name: file.name, src:"../public/data/"+productName+"/"+file.name};
+
+  const path = await window.electronApi.getPath();
+
+  let img = {name: path+"/data/"+productName+"/"+file.name, src: path+"/data/"+productName+"/"+file.name};
   saveFile(file.name);
-  setTimeout(() => {window.addImage(img);}, 1000);
+  setTimeout(() => {window.addImage(img); imageGallery(productName)}, 1000);
 }
 
 async function readFile(file) {

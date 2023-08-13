@@ -26,7 +26,7 @@ app.on("ready", () => {
 });
 
 ipcMain.handle("getProductImages", async (event, productName) => {
-  const productFolderPath = path.join(__dirname, "public", "data", productName);
+  const productFolderPath = path.join(app.getPath("userData"), "data", productName);
   const imageExtensions = [".png", ".jpg", ".jpeg", ".gif", ".bmp"];
   try {
     const files = await fs.promises.readdir(productFolderPath);
@@ -34,7 +34,14 @@ ipcMain.handle("getProductImages", async (event, productName) => {
       return imageExtensions.some((extension) => file.endsWith(extension));
     });
 
-    return { images: imageNames };
+    const imageSrc = new Array(imageNames.length);
+    for (let i = 0; i<imageSrc.length; i++) {
+      imageSrc[i] = path.join(app.getPath("userData"), "data", productName, imageNames[i]);
+    }
+
+    //console.log(app.getPath("userData"), "data", productName);
+    //console.log("\n", imageSrc);
+    return { images: imageSrc };
   } catch (error) {
     return { error: error.message };
   }
@@ -46,7 +53,7 @@ ipcMain.handle('save-file', async (event, binaryData, fileName) => {
       const bufferData = Buffer.from(binaryData);
   
       // Construct the file path
-      const filePath = path.join(__dirname, fileName);
+      const filePath = path.join(app.getPath("userData"), fileName);
       const directoryPath = path.dirname(filePath);
       
       await fs.promises.mkdir(directoryPath, { recursive: true });
@@ -63,13 +70,24 @@ ipcMain.handle('save-file', async (event, binaryData, fileName) => {
   ipcMain.handle('delete-file', async (event, fileName) => {
     try {  
       // Construct the file path
-      const filePath = path.join(__dirname, fileName);
-
-      fs.unlinkSync(filePath);
-  
+      const filePath = fileName;
+      console.log("\n"+ filePath +"\n");
+       fs.unlink(filePath, (err) => {
+        if (err) throw err;
+        console.log('successfully deleted /tmp/hello');
+      });
       return true; // Return success
     } catch (error) {
       console.error('Error deleting file:', error);
       return false; // Return failure
     }
+  });
+
+  ipcMain.handle('get-path', async (event) => {
+    try {  
+      return app.getPath("userData");
+    } catch (error) {
+      return error; // Return failure
+    }
+
   });

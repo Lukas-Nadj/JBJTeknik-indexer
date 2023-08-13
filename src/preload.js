@@ -29,5 +29,15 @@ contextBridge.exposeInMainWorld('electronApi', {
       console.error('Error invoking save-file:', error);
       return false;
     }
+  },
+
+  getPath: async () => {
+    try {
+      const result = await ipcRenderer.invoke('get-path');
+      return result;
+    } catch (error) {
+      console.error('Error invoking save-file:', error);
+      return false;
+    }
   }
 });
