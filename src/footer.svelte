@@ -13,7 +13,8 @@
 
     $: vare = vare;
 
-    
+    $: path = undefined;
+    window.electronApi.getPath().then((result)=> {path = result; path = path})
 </script>
 
 <main>
@@ -32,6 +33,7 @@
         <input bind:value={p} type="text">
     </div>
     </form>
+    <p style="color: black;position:absolute; bottom: -35px; left: 5px; text-align: left; padding: 20px">{path}</p>
 </main>
 
 <style>
@@ -43,6 +45,8 @@
         bottom: 0px;
         left: 0px;
         width: 100vw;
+        overflow:hidden;
+        max-width: 100vw;
         height: 100px;
         min-height: 95px;
         display: flex;

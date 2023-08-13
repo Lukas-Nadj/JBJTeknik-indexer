@@ -10,7 +10,7 @@ contextMenu({
 let mainWindow;
 
 app.on("ready", () => {
-  const appIcon = new Tray('/Users/somebody/images/Icon.png')
+
   mainWindow = new BrowserWindow({
     width: 900,
     height: 800,
@@ -21,19 +21,22 @@ app.on("ready", () => {
       contextIsolation: true,
     },
   });
-
+  mainWindow.removeMenu();
   mainWindow.loadFile("public/index.html"); // Adjust the path to your HTML file
-  mainWindow.webContents.openDevTools();
 });
+
+app.on('window-all-closed', () => {
+  //request json from frontend
+  //saveToJSON()
+  app.quit()
+})
 
 ipcMain.handle("getProductImages", async (event, productName) => {
   const productFolderPath = path.join(app.getPath("userData"), "data", productName);
   const imageExtensions = [".png", ".jpg", ".jpeg", ".gif", ".bmp"];
   try {
     const files = await fs.promises.readdir(productFolderPath);
-    const imageNames = files.filter((file) => {
-      return imageExtensions.some((extension) => file.endsWith(extension));
-    });
+    const imageNames = files
 
     const imageSrc = new Array(imageNames.length);
     for (let i = 0; i<imageSrc.length; i++) {
@@ -92,3 +95,27 @@ ipcMain.handle('save-file', async (event, binaryData, fileName) => {
     }
 
   });
+
+  ipcMain.handle('loadJSON', async (event) => {
+    try {  
+      let rawdata = fs.readFileSync(path.join(app.getPath("userData"),'varer.json')); //stopper programmer indtil den har læst data, hvilket er passende
+      return JSON.parse(rawdata);
+    } catch (error) {
+      return error; // Return failure
+    }
+
+  });
+
+  ipcMain.handle('SaveToJSON', async (event, data) => {
+    try {  
+      fs.writeFile(path.join(app.getPath("userData"),'varer.json'), data,(err) => {
+        if (err) throw err;
+        console.log('Data written to file'); 
+        });
+      console.log("Successfully wrote to: \n"+path.join(app.getPath("userData"),'varer.json'));
+      return "Successfully wrote to: \n"+path.join(app.getPath("userData"),'varer.json');
+    } catch (error) {
+      return error; // Return failure
+    }
+  });
+

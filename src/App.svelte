@@ -3,6 +3,7 @@
 	//import { ipc } from './preload.js';   //don't import it directly, it is automatically run before the dom as the "window" object
 	import Header from "./header.svelte";
 	import Footer from "./footer.svelte";
+	import Fileviewer from "./Components/Fileviewer.svelte";
 	
 	let loading = false;
 
@@ -12,6 +13,14 @@
 		Pris: 0
 	};
 	let varer = [{Varenummer: 120757,Produktnavn: "Trin Alu trinplade",Pris: "596,00"}, { Varenummer: 0,Produktnavn: "",Pris: 0}];
+	let data = window.electronApi.loadJSON();
+	let done = false;
+	if(data instanceof Error) {
+		console.log(data);
+	} else {
+		data.then(response => {varer = response; done = true});
+	}
+
 	$: visibleVarer = søgning ? varer.filter(vare => vare.Varenummer.toString().startsWith(søgning)) : varer;
 
 	$: varer = varer;
@@ -23,7 +32,7 @@
 
 	function addImage (image){
 		images.push(image);
-		images = images;
+		images = images;	
 	};
 
 	window.addImage = addImage;
@@ -51,24 +60,14 @@
 			console.error('Error loading images:', error);
 			loading = false;
 		}
+
+		
+		
   }
 
-	async function deletefile(imagename){
-		let success = window.electronApi.deleteFile(imagename); 
-		if(success) {
-		for(let i = 0; i < images.length; i++){
-			if(images[i].name===imagename){
-				console.log(images[i]);
-				console.log("found it, deleting it", i, images[i].name, imagename);
-				images.splice(i, 1);
-				images = images;
-			}
-		}
-		} else {
-			console.log(success);
-		}
-  	}
-
+	setInterval(() => {
+		window.electronApi.SaveToJSON(JSON.stringify(varer));
+	}, 5000);
 	</script>
 
 <main>
@@ -101,18 +100,7 @@
 	</div>
 	<dialog class="billeder" id="billeder">
 		<div id="clickable-area" class="clickable-area">
-			
-			{#if loading}
-      	  <p>loader billeder...</p>
-      		{:else}
-			{#each images as image (image.src)}
-			<!-- svelte-ignore a11y-mouse-events-have-key-events -->
-			<div class="img">
-			<img src={image.src} alt={console.log(image.src)} width=250px />
-			<button id="del" style="background-color:white; position: relative; width: 40px; right: 40px; text-aling: left; bottom: 10px" on:click={ () => {deletefile(image.name);}}>slet</button>
-			</div>
-			{/each}
-      		{/if}
+			<Fileviewer bind:images bind:loading></Fileviewer>
 		</div>
 	</dialog>
 	<script>
@@ -128,7 +116,6 @@
 	.clickable-area{
 		display: flex;
 		flex-direction: row;
-		flex-wrap: wrap;
 		height: 100%;
 		width: 100%;
 		min-width: 200px;
@@ -158,14 +145,15 @@
 		border-radius: 15px;
 	}
 	.table{
+		box-sizing: border-box;
 		grid-row: 2 / 4;
 		display: flex;
 		justify-content: center;
-		overflow:scroll;
+		overflow:auto;
 		color: black;
 		background-color: #1e1e1e;
-		border-bottom: 2px solid black;
-		border-top: 2px solid black;
+		height: calc(100% - 100px);
+
 	
 	}
 	.table tr{

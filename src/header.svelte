@@ -9,9 +9,7 @@
         <p style="margin: 0px">Søg varenummer</p>
         <input type="search" name="" id="" bind:value={søgning} placeholder="f.eks. 120144">
     </div>
-    <div class="but">
-        <button on:click={() => {varer.sort((a, b) => a.Varenummer - b.Varenummer); varer = varer}}>Sorter varenummer</button>
-    </div>
+        <button class="but" on:click={() => {varer.sort((a, b) => a.Varenummer - b.Varenummer); varer = varer}}><p style="margin: 0px; margin-top: -1px; font-size:small">Sorter</p></button>
     
 </main>
 
@@ -41,22 +39,29 @@
     }
 
     .but{
+        background-color: white;
         position:absolute;
-        text-align: left;
-        left: 5px;
+        text-align: center;
+        height: 2em;
+        left: 15px;
+        padding-left: 15px;
+        padding-right: 15px;
         bottom: 1px;
+        border-radius: 25px;
     }
 
     @media (max-width: 750px) {
 		main {
             box-sizing: border-box;
-			align-items: left;
+			align-items: top;
             justify-content: left;
 		}
 
         .but{
+            position:absolute;
+            left: auto;
             right: 5px !important;
-            top: 1px;
+            top: 5px;
         }
 	}
 </style>

@@ -31,9 +31,40 @@ contextBridge.exposeInMainWorld('electronApi', {
     }
   },
 
-  getPath: async () => {
+  openFile: async (filePath) => {
+    try {
+      window.open(filePath, '_blank', 'top=500,left=200,nodeIntegration=no');
+      return result;
+    } catch (error) {
+      console.error('Error invoking save-file:', error);
+      return false;
+    }
+  },
+
+  getPath: async() => {
     try {
       const result = await ipcRenderer.invoke('get-path');
+      return await result;
+    } catch (error) {
+      console.error('Error invoking save-file:', error);
+      return false;
+    }
+  },
+
+  SaveToJSON: async(jsonString) => {
+    try {
+      const result = await ipcRenderer.invoke('SaveToJSON', jsonString);
+      return result;
+    } catch (error) {
+      console.error('Error invoking save-file:', error);
+      return false;
+    }
+  },
+
+
+  loadJSON: async() => {
+    try {
+      const result = await ipcRenderer.invoke('loadJSON');
       return result;
     } catch (error) {
       console.error('Error invoking save-file:', error);

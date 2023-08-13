@@ -1,4 +1,5 @@
 /node_modules/
 /public/build/
-
+/JBJTeknik-indexer-win32-x64/
+/.vscode/
 .DS_Store
