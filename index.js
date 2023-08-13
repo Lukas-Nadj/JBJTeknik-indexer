@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain } = require("electron");
+const { app, BrowserWindow, ipcMain, Tray } = require("electron");
 const fs = require("fs");
 const path = require("path");
 const contextMenu = require("electron-context-menu");
@@ -10,10 +10,11 @@ contextMenu({
 let mainWindow;
 
 app.on("ready", () => {
+  const appIcon = new Tray('/Users/somebody/images/Icon.png')
   mainWindow = new BrowserWindow({
     width: 900,
     height: 800,
-    icon: "Logo.png",
+    icon: "Icon.png",
     webPreferences: {
       preload: path.join(__dirname, "src/preload.js"),
       nodeIntegration: true,
