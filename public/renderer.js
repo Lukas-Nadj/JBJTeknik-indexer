@@ -21,8 +21,6 @@ async function handleDrop(event) {
   console.log("reading files: ", event.dataTransfer.files[0]);
   const file = event.dataTransfer.files[0];
 
-  
-
 
   if (file) {
     fileData = await readFile(file);

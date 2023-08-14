@@ -28,7 +28,7 @@ app.on("ready", () => {
 app.on('window-all-closed', () => {
   //request json from frontend
   //saveToJSON()
-  app.quit()
+  app.quit();
 })
 
 ipcMain.handle("getProductImages", async (event, productName) => {

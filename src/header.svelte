@@ -1,6 +1,6 @@
 <script>
- export let søgning = undefined;
- export let varer;
+ export let søgning = "";
+ export let varer = [];
 </script>
 
 <main>

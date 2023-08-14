@@ -1,5 +1,5 @@
 <script>
-    export let varer;
+    export let varer = [];
     
     let vn;
     let pn; 

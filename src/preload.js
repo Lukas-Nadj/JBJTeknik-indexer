@@ -33,7 +33,8 @@ contextBridge.exposeInMainWorld('electronApi', {
 
   openFile: async (filePath) => {
     try {
-      window.open(filePath, '_blank', 'top=500,left=200,nodeIntegration=no');
+      window.open(filePath, '_blank', 'top=200,left=500,height=800,nodeIntegration=no,title:'+filePath);
+
       return result;
     } catch (error) {
       console.error('Error invoking save-file:', error);

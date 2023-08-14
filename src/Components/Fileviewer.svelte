@@ -41,6 +41,10 @@
   {#if loading}
     <p>loader billeder...</p>
   {:else}
+  {#if images.length>0}
+    <p style="position:absolute; top:-10px; left: 10px;">Tryk på PDF ell. billede for at åbne</p>
+  {/if}
+  
     {#each images as image (image.src)}
       <!-- svelte-ignore a11y-click-events-have-key-events -->
       <div class="Preview" on:click={()=>{viewFile(image.src)}}>
@@ -51,17 +55,19 @@
           {:else if imgfile(image.src)}
           <img draggable="false" src={image.src} alt={console.log(image.src)} class="billede" />
           {:else}
-          <img  draggable="false" style="position:relative; width: 5vw" src="../text-file.png" alt={console.log(image.src)} class="billede" />
+          <p class="billede" style="position:relative; width: 5vw; margin: 5px; margin-left: -2px; background-color:black; color: white;border-radius: 3px;">{image.src.split('.').pop()}</p>
+          <!-- <img  draggable="false" style="position:relative; width: 5vw" src="../text-file.png" alt={console.log(image.src)} class="billede" />-->
           {/if}
+
           {#await path then result}
-          <p style="margin: 0px">{image.name.slice((result+"/data/"+window.productName+"/").length)}</p>
+          <p style="position:relative; top: 40%; margin: 0px; font-size: smaller">{image.name.slice((result+"/data/"+window.productName+"/").length)}</p>
           {/await}
 
           
 
           <button
             id="del"
-            style="background-color:white; position: absolute; width: 40px; right: 0px; text-align: left; bottom: 0px; margin: 0px"
+            style="background-color:white; position: absolute; width: 40px; right: 0px; text-align: left; bottom: 0px; margin: 0px; font-size: smaller"
             on:click={() => {
               deletefile(image.name);
             }}>slet</button
@@ -83,6 +89,7 @@
   .img{
     display: flex;
     flex-direction: column;
+    width: 100%; 
     align-items: center;
     justify-content: center;
   }
@@ -123,7 +130,7 @@
     max-width: 150px;
     max-height:150px;
 
-    padding: 5%;
+    padding: 1%;
   }
 
   main {
@@ -141,6 +148,7 @@
     max-width: max(70vh, 800px);
     max-height: min(70vh, 500px);
     margin: 0px;
+    padding-top: 1em;
   }
 
 </style>
