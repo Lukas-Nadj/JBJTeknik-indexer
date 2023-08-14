@@ -16,7 +16,9 @@
     { Varenummer: 0, Produktnavn: "", Pris: 0 },
   ];
   let data = window.electronApi.loadJSON();
-  let done = false;
+  //IT PREVENTS SAVING BEFORE THE DATA HAS BEEN LOADED
+  let done = false;  // DO NOT CHANGE THIS
+  //DON'T YOU DARE
   if (data instanceof Error) {
     console.log(data);
   } else {
@@ -95,8 +97,8 @@
           <tbody>
             {#each visibleVarer as vare, i}
               <tr style="height: 35px;" class={i % 2 === 0 ? "odd" : "even"}>
-                <td style=""><input type="text" bind:value={vare.Varenummer} style="all: unset; width: 100%; height: 100%; margin: 0px; background:none" /></td>
-                <td style=""> <input type="text" bind:value={vare.Produktnavn} style="all: unset; width: 100%; height: 100%; margin: 0px; background:none" /></td>
+                <td style="color: #373A86; font-weight: 3000;"><input type="text" bind:value={vare.Varenummer} style="all: unset; width: 100%; height: 100%; margin: 0px; background:none" /></td>
+                <td style="font-weight: 500; text-align:left"> <input type="text" bind:value={vare.Produktnavn} style="all: unset; width: 100%; height: 100%; margin: 0px; background:none" /></td>
                 <td style="text-align:center"><input type="text" bind:value={vare.Pris} style="all: unset; width: 100%; height: 100%; margin: 0px; background:none" /></td>
                 <!-- svelte-ignore a11y-invalid-attribute -->
                 <td style="text-align: center">
@@ -105,7 +107,7 @@
                     on:click={() => {
                       imagegallery(vare.Varenummer);
                     }}
-                    >Se billeder
+                    >Se Billeder
                   </a></td
                 >
                 <td style="display: flex; justify-content: center; align-items: center; margin: 0px; height: 30px"
@@ -121,7 +123,7 @@
               </tr>
             {/each}
           </tbody>
-          <div style="height: 80vh" />
+
         </table>
 
 	</div>
