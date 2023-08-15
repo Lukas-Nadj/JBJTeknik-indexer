@@ -170,16 +170,20 @@
   .odd {
     color: #555;
     background-color: #f5f5f5;
+	transition: background-color linear 0.1s;
   }
   .odd:hover {
     background-color: #e2e2e2;
+	transition: background-color linear 0.1s;
   }
   .even {
     color: #555;
     background-color: #fff;
+	transition: background-color linear 0.1s;
   }
   .even:hover {
     background-color: #e2e2e2;
+	transition: background-color linear 0.1s;
   }
 
   .billeder {
@@ -215,7 +219,7 @@
     border-collapse: collapse;
     border-style: hidden;
     border-radius: 15px;
-	height: auto;
+	height: 35px;
   }
 
   main {

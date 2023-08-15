@@ -53,7 +53,7 @@
           {#if image.src.toLowerCase().endsWith(".pdf")}
             <img draggable="false" style="position:relative; right:1%" src="../pdf-file-placeholder.png" alt={console.log(image.src)} class="billede pdf" />
           {:else if imgfile(image.src)}
-          <img draggable="false" src={image.src} alt={console.log(image.src)} class="billede" />
+          <img style="width: 100px; max-width: 100px" draggable="false" src={image.src} alt={console.log(image.src)} class="billede" />
           {:else}
           <p class="billede" style="position:relative; width: 5vw; margin: 5px; margin-left: -2px; background-color:black; color: white;border-radius: 3px;">{image.src.split('.').pop()}</p>
           <!-- <img  draggable="false" style="position:relative; width: 5vw" src="../text-file.png" alt={console.log(image.src)} class="billede" />-->
