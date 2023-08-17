@@ -1,5 +1,6 @@
 <script>
     export let varer = [];
+    export let favoriteVisible;
     
     let vn;
     let pn; 
@@ -28,12 +29,16 @@
         <p style=" margin: 0px;">Beskrivelse</p>
         <input bind:value={pn} type="text">
     </div>
-    <div style="color: white; margin: 0px; padding-right: 10px; text-align:left;">
+    <div style="color: white; margin: 0px; padding-right: 10px; text-align:left; margin-right: 140px">
         <p style=" margin: 0px;">Pris</p>
         <input bind:value={p} type="text">
     </div>
     </form>
     <p style="color: black;position:absolute; bottom: -35px; left: 5px; text-align: left; padding: 20px">{path}</p>
+    <button style="position: absolute; right: 50px; border-radius: 10px; height: 40px; width: 140px; " on:click={()=>{favoriteVisible = !favoriteVisible; favoriteVisible=favoriteVisible}}>
+        Gemte varer 
+        <i style="margin: auto; margin-left: 10px" class="arrow {favoriteVisible ? "up" : "down"}"></i>
+    </button>
 </main>
 
 <style>
@@ -60,4 +65,33 @@
         height: 55px;
         margin-right: 10px;
     }
+
+    .arrow {
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+}
+
+.right {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+
+.left {
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}
+
+.up {
+  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+  transition: all 0.1s linear;
+}
+
+.down {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  transition: all 0.1s linear;
+}
 </style>

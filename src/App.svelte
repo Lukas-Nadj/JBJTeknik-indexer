@@ -1,10 +1,13 @@
 <script>
   //import { ipc } from './preload.js';   //don't import it directly, it is automatically run before the dom as the "window" object
+  import { fade } from "svelte/transition";
   import Header from "./header.svelte";
   import Footer from "./footer.svelte";
   import Fileviewer from "./Components/Fileviewer.svelte";
+  import Table from "./Components/Table.svelte";
 
   let loading = false;
+  $: favoriteVisible = false;
 
   let vare = {
     Varenummer: 0,
@@ -12,8 +15,7 @@
     Pris: 0,
   };
   let varer = [
-    { Varenummer: 120757, Produktnavn: "Trin Alu trinplade", Pris: "596,00" },
-    { Varenummer: 0, Produktnavn: "", Pris: 0 },
+    "DoNotSave"
   ];
   let data = window.electronApi.loadJSON();
   //IT PREVENTS SAVING BEFORE THE DATA HAS BEEN LOADED
@@ -45,6 +47,7 @@
   window.addImage = addImage;
 
   async function imagegallery(vn) {
+	console.log(vn);
     const dialogElement = document.getElementById("billeder");
     window.productName = vn.toString();
     dialogElement.showModal();
@@ -73,7 +76,7 @@
   }
 
   setInterval(() => {
-    if (done) {
+    if (done && !(varer[0]==="DoNotSave")) { //checks if api promise is fulfilled and data is recieved. and then checks that "varer" doesn't still have its default value, preventing overwriting the save on a slow load.
       window.electronApi.SaveToJSON(JSON.stringify(varer));
     }
   }, 10000);
@@ -83,10 +86,11 @@
   <div class="container">
     <Header bind:søgning bind:varer />
     <div class="table">
-      <div class="wrap">
+      <div class="wrap" style="height: calc(100% - {favoriteVisible ? "305" : "100"}px)">
         <table style="width:100%; text-align:center; border-collapse:separate !important; margin: 0px" cellspacing="0">
           <thead style="border-radius: 15px">
             <tr style="position: sticky; top: 0px; height: 30px; overflow:hidden; background-color:#2B2F42; color: white;">
+			  <th style="width: 55px;"></th>
               <th style="width: 160px;">Varenummer</th>
               <th>Produktnavn</th>
               <th style="width: 160px;">Pris fra 05.22</th>
@@ -96,7 +100,8 @@
           </thead>
           <tbody>
             {#each visibleVarer as vare, i}
-              <tr style="height: 35px;" class={i % 2 === 0 ? "odd" : "even"}>
+              <tr transition:fade={{ duration: 80 }} style="height: 35px;" class={i % 2 === 0 ? "odd" : "even"}>
+				<td style="display: flex; justify-content: center; align-items: center; width: 100%; height: 100%"><input style="margin: auto;" bind:checked={vare.checked} type="checkbox" name="" id=""></td>
                 <td style="color: #373A86; font-weight: 3000;"><input type="text" bind:value={vare.Varenummer} style="all: unset; width: 100%; height: 100%; margin: 0px; background:none" /></td>
                 <td style="font-weight: 500; text-align:left"> <input type="text" bind:value={vare.Produktnavn} style="all: unset; width: 100%; height: 100%; margin: 0px; background:none" /></td>
                 <td style="text-align:center"><input type="text" bind:value={vare.Pris} style="all: unset; width: 100%; height: 100%; margin: 0px; background:none" /></td>
@@ -125,11 +130,13 @@
           </tbody>
 
         </table>
+		
+		<Table bind:favoriteVisible bind:loading bind:images bind:varer></Table>
 
-	</div>
-      </div>
+		</div>
+    </div>
     
-    <Footer bind:varer />
+    <Footer bind:varer bind:favoriteVisible/>
   </div>
   <dialog class="billeder" id="billeder">
     <div id="clickable-area" class="clickable-area">
@@ -161,10 +168,12 @@
     margin-top: 12px !important;
     border-radius: 10px;
     overflow: auto;
-    justify-content: center;
+    align-items: center;
+	flex-direction: column;
     width: 98%;
     margin: 0px;
     padding: 0px;
+	transition: height 0.18s ease-in-out;
   }
 
   .odd {
@@ -205,12 +214,13 @@
     box-sizing: border-box;
     grid-row: 2 / 4;
     display: flex;
-    justify-content: center;
+    align-items: center;
+	flex-direction: column;
     overflow: auto;
     color: black;
     background-color: #1e1e1e;
     border-radius: 25px;
-    height: calc(100% - 100px);
+    height: calc(100% - 50px);
     overflow: auto;
   }
 
