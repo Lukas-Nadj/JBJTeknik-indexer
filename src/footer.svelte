@@ -19,29 +19,37 @@
 </script>
 
 <main>
-    <form onsubmit="return false" style="display: flex; flex-direction: row">
+    <form onsubmit="return false" style="display: flex; flex-direction: row; width: 100%">
     <button type="submit" on:click={() => {let vare = { Varenummer: vn, Produktnavn: pn, Pris: p };varer.push(Object.assign({}, vare)); varer.sort((a, b) => a.Varenummer - b.Varenummer); varer = varer; vn = ""; pn=""; p=""}}>Nyt varenummer</button>
-    <div style="color: white; margin: 0px; padding-right: 10px; text-align:left;">
-        <p style=" margin: 0px;">Varenummer</p>
-        <input bind:value={vn} type="text">
+    <div style="color: white; margin: 0px; padding-right: 10px; text-align:left; width: 180px; min-width:95px;">
+        <p style=" margin: 0px; width: 100%; min-width: 60px">Varenummer</p>
+        <input bind:value={vn} type="text" style="width: 100%; min-width: 60px">
     </div>
-    <div style="color: white; margin: 0px; padding-right: 10px; text-align:left;">
-        <p style=" margin: 0px;">Beskrivelse</p>
-        <input bind:value={pn} type="text">
+    <div style="color: white; margin: 0px; padding-right: 10px; text-align:left; width: 180px; min-width: 85px;">
+        <p style=" margin: 0px; width: 100%; min-width: 60px">Beskrivelse</p>
+        <input bind:value={pn} type="text" style="width: 100%; min-width: 60px">
     </div>
-    <div style="color: white; margin: 0px; padding-right: 10px; text-align:left; margin-right: 140px">
-        <p style=" margin: 0px;">Pris</p>
-        <input bind:value={p} type="text">
+    <div style="color: white; margin: 0px; padding-right: 10px; text-align:left; margin-right: auto; width: 180px; min-width: 60px;">
+        <p style=" margin: 0px; width: 100%; min-width: 60px">Pris</p>
+        <input bind:value={p} type="text" style="width: 100%; min-width: 60px">
     </div>
-    </form>
-    <p style="color: black;position:absolute; bottom: -35px; left: 5px; text-align: left; padding: 20px">{path}</p>
-    <button style="position: absolute; right: 50px; border-radius: 10px; height: 40px; width: 140px; " on:click={()=>{favoriteVisible = !favoriteVisible; favoriteVisible=favoriteVisible}}>
+    <div style="justify-self:flex-end; align-self: flex-end; padding-right: 15px">
+    <button id="gemte" style="border-radius: 10px; " on:click={()=>{favoriteVisible = !favoriteVisible; favoriteVisible=favoriteVisible}}>
         Gemte varer 
         <i style="margin: auto; margin-left: 10px" class="arrow {favoriteVisible ? "up" : "down"}"></i>
     </button>
+    </div>
+    </form>
+    <p style="color: black;position:absolute; bottom: -35px; left: 5px; text-align: left; padding: 20px">{path}</p>
+    
 </main>
 
 <style>
+
+  #gemte{
+    width: 130px;
+  }
+
     main{
         grid-row: 3 / 4;
         position: absolute;
@@ -59,7 +67,10 @@
         border-radius: 12px 12px 0px 0px;
         justify-content: left;
         padding-left: 20px;
+        box-shadow: 0px 2px 25px rgba(0, 0, 0, 0.7);
     }
+
+
 
     button{
         height: 55px;
@@ -93,5 +104,16 @@
   transform: rotate(45deg);
   -webkit-transform: rotate(45deg);
   transition: all 0.1s linear;
+}
+@media (max-width: 640px) {
+  button {
+    font-size:x-small;
+    width: 60px;
+    padding: 2px;
+  }
+
+  #gemte{
+    width: 110px;
+  }
 }
 </style>

@@ -38,7 +38,7 @@
   }
 </script>
 
-<main style="{favoriteVisible ? 'background-color: #fff;' : ''}">
+<main style="{favoriteVisible ? 'background-color: #fff;' : 'pointer-events:none'}">
   {#if favoriteVisible}
     <table in:fly={{ y: '100%', duration: 180}} out:fly={{ y: '100%', duration: 180}}  style="width:100%; text-align:center; border-collapse:separate !important; margin: 0px; background-color: #f5f5f5;" cellspacing="0">
         <thead style="border-radius: 15px">

@@ -1,4 +1,6 @@
 <script>
+  //TODO: Change .wrap and table to border-box sizing
+
   //import { ipc } from './preload.js';   //don't import it directly, it is automatically run before the dom as the "window" object
   import { fade } from "svelte/transition";
   import Header from "./header.svelte";
@@ -7,6 +9,7 @@
   import Table from "./Components/Table.svelte";
 
   let loading = false;
+  let changed = false;
   $: favoriteVisible = false;
 
   let vare = {
@@ -37,7 +40,17 @@
   let p = "";
   let images = [];
   $: images = images;
+
+  $: {
+    dataChanged(varer);
+  }
+
   window.productName = "";
+
+  function dataChanged(v) {
+    if(v)
+    changed = true;
+  }
 
   function addImage(image) {
     images.push(image);
@@ -76,16 +89,33 @@
   }
 
   setInterval(() => {
-    if (done && !(varer[0]==="DoNotSave")) { //checks if api promise is fulfilled and data is recieved. and then checks that "varer" doesn't still have its default value, preventing overwriting the save on a slow load.
+    if (done && !(varer[0]==="DoNotSave") && changed) { //checks if api promise is fulfilled and data is recieved. and then checks that "varer" doesn't still have its default value, preventing overwriting the save on a slow load.
       window.electronApi.SaveToJSON(JSON.stringify(varer));
+      changed = false;
     }
   }, 10000);
+
+  /*
+  $: hide = false;
+
+  function hider() {
+    hide = true;
+
+    setTimeout(() => {hide = false}, 300 );
+  }
+
+  // Attach the event handler to the window's resize event
+  window.addEventListener('resize', hider);
+  */
+
+
+
 </script>
 
-<main>
+<main> //style="transition: opacity ease-in-out   0.25s; hide ? 'opacity: 80%;' : 'opacity: 100%'"
   <div class="container">
     <Header bind:søgning bind:varer />
-    <div class="table">
+    <div class="table" style="box-sizing: content-box;">
       <div class="wrap" style="height: calc(100% - {favoriteVisible ? "305" : "100"}px)">
         <table style="width:100%; text-align:center; border-collapse:separate !important; margin: 0px" cellspacing="0">
           <thead style="border-radius: 15px">
@@ -101,7 +131,7 @@
           <tbody>
             {#each visibleVarer as vare, i}
               <tr transition:fade={{ duration: 80 }} style="height: 35px;" class={i % 2 === 0 ? "odd" : "even"}>
-				<td style="display: flex; justify-content: center; align-items: center; width: 100%; height: 100%"><input style="margin: auto;" bind:checked={vare.checked} type="checkbox" name="" id=""></td>
+				<td style="display: flex; justify-content: center; align-items: center; width: 100%; height: 100%;"><input style="margin: auto;" bind:checked={vare.checked} type="checkbox" name="" id=""></td>
                 <td style="color: #373A86; font-weight: 3000;"><input type="text" bind:value={vare.Varenummer} style="all: unset; width: 100%; height: 100%; margin: 0px; background:none" /></td>
                 <td style="font-weight: 500; text-align:left"> <input type="text" bind:value={vare.Produktnavn} style="all: unset; width: 100%; height: 100%; margin: 0px; background:none" /></td>
                 <td style="text-align:center"><input type="text" bind:value={vare.Pris} style="all: unset; width: 100%; height: 100%; margin: 0px; background:none" /></td>
@@ -122,7 +152,7 @@
                       varer = varer;
                     }}
                     src="../public/trash_icon.png"
-                    style="margin: 0px; box-sizing: border-box ;width: 25px; height: 25px; padding: 3px;background-color: #0F142D; border-radius:24px"
+                    style="margin: 0px; box-sizing: border-box ;width: 15px; height: 15px; padding: 3px; padding-bottom:0px;background-color: #751201; border-radius:24px"
                   /></td
                 >
               </tr>
@@ -164,11 +194,12 @@
   }
 
   .wrap {
+	box-sizing: content-box;
     display: flex;
     margin-top: 12px !important;
     border-radius: 10px;
-    overflow: auto;
-    align-items: center;
+    overflow-y: overlay;
+	align-items: center;
 	flex-direction: column;
     width: 98%;
     margin: 0px;

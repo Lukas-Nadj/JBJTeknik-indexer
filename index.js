@@ -23,6 +23,7 @@ app.on("ready", () => {
   });
   mainWindow.removeMenu();
   mainWindow.loadFile("public/index.html"); // Adjust the path to your HTML file
+  
 });
 
 app.on('window-all-closed', () => {

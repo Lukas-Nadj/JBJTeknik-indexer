@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"hide-files.files": [
+			".gitignore",
+			"package-lock.json",
+			"README.md"
+		]
+	}
+}
