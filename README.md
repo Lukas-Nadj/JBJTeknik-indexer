@@ -5,8 +5,8 @@ this was a project i created for JBJTeknik, also my first electron app, of cours
 ## What it looks like
 
 <div>
-  <img src="image.png" height= 520\>
-  <img src="image2.png" height= 520\>
+  <img src="image.png" height= 500\>
+  <img src="image2.png" height= 500\>
 ![](./image2.png)
 </div>
 ## What can it do why was it built?
