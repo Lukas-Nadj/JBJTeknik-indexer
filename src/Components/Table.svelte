@@ -1,4 +1,8 @@
 <script>
+
+// fjern loading fra den her component, vi bruger det kun til imagegallery
+
+
   import {fade, fly} from "svelte/transition";
   //export let favorite = [{ Varenummer: 120757, Produktnavn: "Trin Alu trinplade", Pris: "596,00" }, { Varenummer: 0, Produktnavn: "", Pris: 0 }, {}, {}, {}, {}, {}, {}, {}];
   export let varer;

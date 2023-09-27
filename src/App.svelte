@@ -1,28 +1,24 @@
 <script>
   //TODO: Change .wrap and table to border-box sizing
-
-  //import { ipc } from './preload.js';   //don't import it directly, it is automatically run before the dom as the "window" object
   import { fade } from "svelte/transition";
   import Header from "./header.svelte";
   import Footer from "./footer.svelte";
   import Fileviewer from "./Components/Fileviewer.svelte";
   import Table from "./Components/Table.svelte";
 
-  let loading = false;
-  let changed = false;
-  $: favoriteVisible = false;
+  let loading = false; // indicates whether we are done loading something?
+  let changed = false; //whether there have been changes to the table
+  $: favoriteVisible = false; //the favorites bar, changes css
 
-  let vare = {
+  let vare = { //boilerplate for an item
     Varenummer: 0,
     Produktnavn: "",
     Pris: 0,
   };
-  let varer = [
-    "DoNotSave"
-  ];
-  let data = window.electronApi.loadJSON();
+  let varer = ["DoNotSave"]; // selve varene
+  let data = window.electronApi.loadJSON(); //henter varer.json
   //IT PREVENTS SAVING BEFORE THE DATA HAS BEEN LOADED
-  let done = false;  // DO NOT CHANGE THIS
+  let done = false; // DO NOT CHANGE THIS
   //DON'T YOU DARE
   if (data instanceof Error) {
     console.log(data);
@@ -48,8 +44,7 @@
   window.productName = "";
 
   function dataChanged(v) {
-    if(v)
-    changed = true;
+    if (v) changed = true;
   }
 
   function addImage(image) {
@@ -60,7 +55,7 @@
   window.addImage = addImage;
 
   async function imagegallery(vn) {
-	console.log(vn);
+    console.log(vn);
     const dialogElement = document.getElementById("billeder");
     window.productName = vn.toString();
     dialogElement.showModal();
@@ -89,38 +84,25 @@
   }
 
   setInterval(() => {
-    if (done && !(varer[0]==="DoNotSave") && changed) { //checks if api promise is fulfilled and data is recieved. and then checks that "varer" doesn't still have its default value, preventing overwriting the save on a slow load.
+    if (done && !(varer[0] === "DoNotSave") && changed) {
+      //checks if api promise is fulfilled and data is recieved. and then checks that "varer" doesn't still have its default value, preventing overwriting the save on a slow load.
       window.electronApi.SaveToJSON(JSON.stringify(varer));
       changed = false;
     }
   }, 10000);
 
-  /*
-  $: hide = false;
-
-  function hider() {
-    hide = true;
-
-    setTimeout(() => {hide = false}, 300 );
-  }
-
-  // Attach the event handler to the window's resize event
-  window.addEventListener('resize', hider);
-  */
-
-
-
 </script>
 
-<main> //style="transition: opacity ease-in-out   0.25s; hide ? 'opacity: 80%;' : 'opacity: 100%'"
+<main>
+  //style="transition: opacity ease-in-out 0.25s; hide ? 'opacity: 80%;' : 'opacity: 100%'"
   <div class="container">
     <Header bind:søgning bind:varer />
     <div class="table" style="box-sizing: content-box;">
-      <div class="wrap" style="height: calc(100% - {favoriteVisible ? "305" : "100"}px)">
+      <div class="wrap" style="height: calc(100% - {favoriteVisible ? '305' : '100'}px)">
         <table style="width:100%; text-align:center; border-collapse:separate !important; margin: 0px" cellspacing="0">
           <thead style="border-radius: 15px">
             <tr style="position: sticky; top: 0px; height: 30px; overflow:hidden; background-color:#2B2F42; color: white;">
-			  <th style="width: 55px;"></th>
+              <th style="width: 55px;" />
               <th style="width: 160px;">Varenummer</th>
               <th>Produktnavn</th>
               <th style="width: 160px;">Pris fra 05.22</th>
@@ -131,7 +113,9 @@
           <tbody>
             {#each visibleVarer as vare, i}
               <tr transition:fade={{ duration: 80 }} style="height: 35px;" class={i % 2 === 0 ? "odd" : "even"}>
-				<td style="display: flex; justify-content: center; align-items: center; width: 100%; height: 100%;"><input style="margin: auto;" bind:checked={vare.checked} type="checkbox" name="" id=""></td>
+                <td style="display: flex; justify-content: center; align-items: center; width: 100%; height: 100%;"
+                  ><input style="margin: auto;" bind:checked={vare.checked} type="checkbox" name="" id="" /></td
+                >
                 <td style="color: #373A86; font-weight: 3000;"><input type="text" bind:value={vare.Varenummer} style="all: unset; width: 100%; height: 100%; margin: 0px; background:none" /></td>
                 <td style="font-weight: 500; text-align:left"> <input type="text" bind:value={vare.Produktnavn} style="all: unset; width: 100%; height: 100%; margin: 0px; background:none" /></td>
                 <td style="text-align:center"><input type="text" bind:value={vare.Pris} style="all: unset; width: 100%; height: 100%; margin: 0px; background:none" /></td>
@@ -158,15 +142,13 @@
               </tr>
             {/each}
           </tbody>
-
         </table>
-		
-		<Table bind:favoriteVisible bind:loading bind:images bind:varer></Table>
 
-		</div>
+        <Table bind:favoriteVisible bind:loading bind:images bind:varer />
+      </div>
     </div>
-    
-    <Footer bind:varer bind:favoriteVisible/>
+
+    <Footer bind:varer bind:favoriteVisible />
   </div>
   <dialog class="billeder" id="billeder">
     <div id="clickable-area" class="clickable-area">
@@ -183,6 +165,9 @@
 </main>
 
 <style>
+
+  
+
   .clickable-area {
     display: flex;
     flex-direction: row;
@@ -194,36 +179,36 @@
   }
 
   .wrap {
-	box-sizing: content-box;
+    box-sizing: content-box;
     display: flex;
     margin-top: 12px !important;
     border-radius: 10px;
     overflow-y: overlay;
-	align-items: center;
-	flex-direction: column;
+    align-items: center;
+    flex-direction: column;
     width: 98%;
     margin: 0px;
     padding: 0px;
-	transition: height 0.18s ease-in-out;
+    transition: height 0.18s ease-in-out;
   }
 
   .odd {
     color: #555;
     background-color: #f5f5f5;
-	transition: background-color linear 0.1s;
+    transition: background-color linear 0.1s;
   }
   .odd:hover {
     background-color: #e2e2e2;
-	transition: background-color linear 0.1s;
+    transition: background-color linear 0.1s;
   }
   .even {
     color: #555;
     background-color: #fff;
-	transition: background-color linear 0.1s;
+    transition: background-color linear 0.1s;
   }
   .even:hover {
     background-color: #e2e2e2;
-	transition: background-color linear 0.1s;
+    transition: background-color linear 0.1s;
   }
 
   .billeder {
@@ -246,7 +231,7 @@
     grid-row: 2 / 4;
     display: flex;
     align-items: center;
-	flex-direction: column;
+    flex-direction: column;
     overflow: auto;
     color: black;
     background-color: #1e1e1e;
@@ -260,7 +245,7 @@
     border-collapse: collapse;
     border-style: hidden;
     border-radius: 15px;
-	height: 35px;
+    height: 35px;
   }
 
   main {

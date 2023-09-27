@@ -2499,7 +2499,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (42:2) {#if favoriteVisible}
+    // (46:2) {#if favoriteVisible}
     function create_if_block(ctx) {
     	let table;
     	let thead;
@@ -2553,26 +2553,26 @@ var app = (function () {
     			}
 
     			set_style(th0, "width", "55px");
-    			add_location(th0, file$1, 45, 12, 1760);
+    			add_location(th0, file$1, 49, 12, 1838);
     			set_style(th1, "width", "160px");
-    			add_location(th1, file$1, 46, 12, 1808);
-    			add_location(th2, file$1, 47, 12, 1852);
+    			add_location(th1, file$1, 50, 12, 1886);
+    			add_location(th2, file$1, 51, 12, 1930);
     			set_style(th3, "width", "160px");
-    			add_location(th3, file$1, 48, 12, 1874);
+    			add_location(th3, file$1, 52, 12, 1952);
     			set_style(th4, "width", "160px");
-    			add_location(th4, file$1, 49, 12, 1918);
+    			add_location(th4, file$1, 53, 12, 1996);
     			set_style(th5, "width", "35px");
-    			add_location(th5, file$1, 50, 12, 1959);
+    			add_location(th5, file$1, 54, 12, 2037);
     			set_style(tr, "position", "sticky");
     			set_style(tr, "top", "0px");
     			set_style(tr, "height", "30px");
     			set_style(tr, "overflow", "hidden");
     			set_style(tr, "background-color", "#2B2F42");
     			set_style(tr, "color", "white");
-    			add_location(tr, file$1, 44, 10, 1636);
+    			add_location(tr, file$1, 48, 10, 1714);
     			set_style(thead, "border-radius", "15px");
-    			add_location(thead, file$1, 43, 8, 1590);
-    			add_location(tbody, file$1, 53, 8, 2031);
+    			add_location(thead, file$1, 47, 8, 1668);
+    			add_location(tbody, file$1, 57, 8, 2109);
     			set_style(table, "width", "100%");
     			set_style(table, "text-align", "center");
     			set_style(table, "border-collapse", "separate", 1);
@@ -2580,7 +2580,7 @@ var app = (function () {
     			set_style(table, "background-color", "#f5f5f5");
     			attr_dev(table, "cellspacing", "0");
     			attr_dev(table, "class", "svelte-y0g4st");
-    			add_location(table, file$1, 42, 4, 1366);
+    			add_location(table, file$1, 46, 4, 1444);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, table, anchor);
@@ -2661,14 +2661,14 @@ var app = (function () {
     		block,
     		id: create_if_block.name,
     		type: "if",
-    		source: "(42:2) {#if favoriteVisible}",
+    		source: "(46:2) {#if favoriteVisible}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (55:10) {#each checkedVarer as item, i}
+    // (59:10) {#each checkedVarer as item, i}
     function create_each_block$1(ctx) {
     	let tr;
     	let td0;
@@ -2743,46 +2743,46 @@ var app = (function () {
     			attr_dev(input0, "type", "checkbox");
     			attr_dev(input0, "name", "");
     			attr_dev(input0, "id", "");
-    			add_location(input0, file$1, 56, 113, 2271);
+    			add_location(input0, file$1, 60, 113, 2349);
     			set_style(td0, "display", "flex");
     			set_style(td0, "justify-content", "center");
     			set_style(td0, "align-items", "center");
     			set_style(td0, "width", "100%");
     			set_style(td0, "height", "100%");
-    			add_location(td0, file$1, 56, 14, 2172);
+    			add_location(td0, file$1, 60, 14, 2250);
     			attr_dev(input1, "type", "text");
     			set_style(input1, "all", "unset");
     			set_style(input1, "width", "100%");
     			set_style(input1, "height", "100%");
     			set_style(input1, "margin", "0px");
     			set_style(input1, "background", "none");
-    			add_location(input1, file$1, 57, 61, 2425);
+    			add_location(input1, file$1, 61, 61, 2503);
     			set_style(td1, "color", "#373A86");
     			set_style(td1, "font-weight", "3000");
-    			add_location(td1, file$1, 57, 14, 2378);
+    			add_location(td1, file$1, 61, 14, 2456);
     			attr_dev(input2, "type", "text");
     			set_style(input2, "all", "unset");
     			set_style(input2, "width", "100%");
     			set_style(input2, "height", "100%");
     			set_style(input2, "margin", "0px");
     			set_style(input2, "background", "none");
-    			add_location(input2, file$1, 58, 61, 2618);
+    			add_location(input2, file$1, 62, 61, 2696);
     			set_style(td2, "font-weight", "500");
     			set_style(td2, "text-align", "left");
-    			add_location(td2, file$1, 58, 14, 2571);
+    			add_location(td2, file$1, 62, 14, 2649);
     			attr_dev(input3, "type", "text");
     			set_style(input3, "all", "unset");
     			set_style(input3, "width", "100%");
     			set_style(input3, "height", "100%");
     			set_style(input3, "margin", "0px");
     			set_style(input3, "background", "none");
-    			add_location(input3, file$1, 59, 44, 2795);
+    			add_location(input3, file$1, 63, 44, 2873);
     			set_style(td3, "text-align", "center");
-    			add_location(td3, file$1, 59, 14, 2765);
+    			add_location(td3, file$1, 63, 14, 2843);
     			attr_dev(a, "href", "#");
-    			add_location(a, file$1, 62, 16, 3043);
+    			add_location(a, file$1, 66, 16, 3121);
     			set_style(td4, "text-align", "center");
-    			add_location(td4, file$1, 61, 14, 2995);
+    			add_location(td4, file$1, 65, 14, 3073);
     			if (!src_url_equal(button.src, button_src_value = "../public/trash_icon.png")) attr_dev(button, "src", button_src_value);
     			set_style(button, "margin", "0px");
     			set_style(button, "box-sizing", "border-box ");
@@ -2791,16 +2791,16 @@ var app = (function () {
     			set_style(button, "padding", "3px");
     			set_style(button, "background-color", "#0F142D");
     			set_style(button, "border-radius", "24px");
-    			add_location(button, file$1, 71, 17, 3383);
+    			add_location(button, file$1, 75, 17, 3461);
     			set_style(td5, "display", "flex");
     			set_style(td5, "justify-content", "center");
     			set_style(td5, "align-items", "center");
     			set_style(td5, "margin", "0px");
     			set_style(td5, "height", "30px");
-    			add_location(td5, file$1, 70, 14, 3267);
+    			add_location(td5, file$1, 74, 14, 3345);
     			set_style(tr, "height", "35px");
     			attr_dev(tr, "class", "" + (null_to_empty(/*i*/ ctx[15] % 2 === 0 ? "odd" : "even") + " svelte-y0g4st"));
-    			add_location(tr, file$1, 55, 12, 2093);
+    			add_location(tr, file$1, 59, 12, 2171);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, tr, anchor);
@@ -2870,7 +2870,7 @@ var app = (function () {
     		block,
     		id: create_each_block$1.name,
     		type: "each",
-    		source: "(55:10) {#each checkedVarer as item, i}",
+    		source: "(59:10) {#each checkedVarer as item, i}",
     		ctx
     	});
 
@@ -2893,7 +2893,7 @@ var app = (function () {
     			: 'pointer-events:none');
 
     			attr_dev(main, "class", "svelte-y0g4st");
-    			add_location(main, file$1, 40, 0, 1253);
+    			add_location(main, file$1, 44, 0, 1331);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -3174,7 +3174,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (132:12) {#each visibleVarer as vare, i}
+    // (114:12) {#each visibleVarer as vare, i}
     function create_each_block(ctx) {
     	let tr;
     	let td0;
@@ -3251,46 +3251,46 @@ var app = (function () {
     			attr_dev(input0, "type", "checkbox");
     			attr_dev(input0, "name", "");
     			attr_dev(input0, "id", "");
-    			add_location(input0, file, 133, 104, 4034);
+    			add_location(input0, file, 116, 19, 3907);
     			set_style(td0, "display", "flex");
     			set_style(td0, "justify-content", "center");
     			set_style(td0, "align-items", "center");
     			set_style(td0, "width", "100%");
     			set_style(td0, "height", "100%");
-    			add_location(td0, file, 133, 4, 3934);
+    			add_location(td0, file, 115, 16, 3788);
     			attr_dev(input1, "type", "text");
     			set_style(input1, "all", "unset");
     			set_style(input1, "width", "100%");
     			set_style(input1, "height", "100%");
     			set_style(input1, "margin", "0px");
     			set_style(input1, "background", "none");
-    			add_location(input1, file, 134, 63, 4190);
+    			add_location(input1, file, 118, 63, 4082);
     			set_style(td1, "color", "#373A86");
     			set_style(td1, "font-weight", "3000");
-    			add_location(td1, file, 134, 16, 4143);
+    			add_location(td1, file, 118, 16, 4035);
     			attr_dev(input2, "type", "text");
     			set_style(input2, "all", "unset");
     			set_style(input2, "width", "100%");
     			set_style(input2, "height", "100%");
     			set_style(input2, "margin", "0px");
     			set_style(input2, "background", "none");
-    			add_location(input2, file, 135, 63, 4385);
+    			add_location(input2, file, 119, 63, 4277);
     			set_style(td2, "font-weight", "500");
     			set_style(td2, "text-align", "left");
-    			add_location(td2, file, 135, 16, 4338);
+    			add_location(td2, file, 119, 16, 4230);
     			attr_dev(input3, "type", "text");
     			set_style(input3, "all", "unset");
     			set_style(input3, "width", "100%");
     			set_style(input3, "height", "100%");
     			set_style(input3, "margin", "0px");
     			set_style(input3, "background", "none");
-    			add_location(input3, file, 136, 46, 4564);
+    			add_location(input3, file, 120, 46, 4456);
     			set_style(td3, "text-align", "center");
-    			add_location(td3, file, 136, 16, 4534);
+    			add_location(td3, file, 120, 16, 4426);
     			attr_dev(a, "href", "#");
-    			add_location(a, file, 139, 18, 4818);
+    			add_location(a, file, 123, 18, 4710);
     			set_style(td4, "text-align", "center");
-    			add_location(td4, file, 138, 16, 4768);
+    			add_location(td4, file, 122, 16, 4660);
     			if (!src_url_equal(button.src, button_src_value = "../public/trash_icon.png")) attr_dev(button, "src", button_src_value);
     			set_style(button, "margin", "0px");
     			set_style(button, "box-sizing", "border-box ");
@@ -3300,16 +3300,16 @@ var app = (function () {
     			set_style(button, "padding-bottom", "0px");
     			set_style(button, "background-color", "#751201");
     			set_style(button, "border-radius", "24px");
-    			add_location(button, file, 148, 19, 5176);
+    			add_location(button, file, 132, 19, 5068);
     			set_style(td5, "display", "flex");
     			set_style(td5, "justify-content", "center");
     			set_style(td5, "align-items", "center");
     			set_style(td5, "margin", "0px");
     			set_style(td5, "height", "30px");
-    			add_location(td5, file, 147, 16, 5058);
+    			add_location(td5, file, 131, 16, 4950);
     			set_style(tr, "height", "35px");
-    			attr_dev(tr, "class", "" + (null_to_empty(/*i*/ ctx[31] % 2 === 0 ? "odd" : "even") + " svelte-1jn24uk"));
-    			add_location(tr, file, 132, 14, 3831);
+    			attr_dev(tr, "class", "" + (null_to_empty(/*i*/ ctx[31] % 2 === 0 ? "odd" : "even") + " svelte-as7g04"));
+    			add_location(tr, file, 114, 14, 3673);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, tr, anchor);
@@ -3397,7 +3397,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(132:12) {#each visibleVarer as vare, i}",
+    		source: "(114:12) {#each visibleVarer as vare, i}",
     		ctx
     	});
 
@@ -3573,7 +3573,7 @@ var app = (function () {
     	const block = {
     		c: function create() {
     			main = element("main");
-    			t0 = text("//style=\"transition: opacity ease-in-out   0.25s; hide ? 'opacity: 80%;' : 'opacity: 100%'\"\n  ");
+    			t0 = text("//style=\"transition: opacity ease-in-out 0.25s; hide ? 'opacity: 80%;' : 'opacity: 100%'\"\n  ");
     			div2 = element("div");
     			create_component(header.$$.fragment);
     			t1 = space();
@@ -3618,52 +3618,52 @@ var app = (function () {
     			t17 = space();
     			script1 = element("script");
     			set_style(th0, "width", "55px");
-    			add_location(th0, file, 122, 5, 3443);
+    			add_location(th0, file, 104, 14, 3288);
     			set_style(th1, "width", "160px");
-    			add_location(th1, file, 123, 14, 3488);
-    			add_location(th2, file, 124, 14, 3544);
+    			add_location(th1, file, 105, 14, 3330);
+    			add_location(th2, file, 106, 14, 3386);
     			set_style(th3, "width", "160px");
-    			add_location(th3, file, 125, 14, 3579);
+    			add_location(th3, file, 107, 14, 3421);
     			set_style(th4, "width", "160px");
-    			add_location(th4, file, 126, 14, 3639);
+    			add_location(th4, file, 108, 14, 3481);
     			set_style(th5, "width", "35px");
-    			add_location(th5, file, 127, 14, 3682);
+    			add_location(th5, file, 109, 14, 3524);
     			set_style(tr, "position", "sticky");
     			set_style(tr, "top", "0px");
     			set_style(tr, "height", "30px");
     			set_style(tr, "overflow", "hidden");
     			set_style(tr, "background-color", "#2B2F42");
     			set_style(tr, "color", "white");
-    			add_location(tr, file, 121, 12, 3326);
+    			add_location(tr, file, 103, 12, 3162);
     			set_style(thead, "border-radius", "15px");
-    			add_location(thead, file, 120, 10, 3278);
-    			add_location(tbody, file, 130, 10, 3765);
+    			add_location(thead, file, 102, 10, 3114);
+    			add_location(tbody, file, 112, 10, 3607);
     			set_style(table0, "width", "100%");
     			set_style(table0, "text-align", "center");
     			set_style(table0, "border-collapse", "separate", 1);
     			set_style(table0, "margin", "0px");
     			attr_dev(table0, "cellspacing", "0");
-    			attr_dev(table0, "class", "svelte-1jn24uk");
-    			add_location(table0, file, 119, 8, 3156);
-    			attr_dev(div0, "class", "wrap svelte-1jn24uk");
-    			set_style(div0, "height", "calc(100% - " + (/*favoriteVisible*/ ctx[5] ? "305" : "100") + "px)");
-    			add_location(div0, file, 118, 6, 3064);
-    			attr_dev(div1, "class", "table svelte-1jn24uk");
+    			attr_dev(table0, "class", "svelte-as7g04");
+    			add_location(table0, file, 101, 8, 2992);
+    			attr_dev(div0, "class", "wrap svelte-as7g04");
+    			set_style(div0, "height", "calc(100% - " + (/*favoriteVisible*/ ctx[5] ? '305' : '100') + "px)");
+    			add_location(div0, file, 100, 6, 2900);
+    			attr_dev(div1, "class", "table svelte-as7g04");
     			set_style(div1, "box-sizing", "content-box");
-    			add_location(div1, file, 117, 4, 3005);
-    			attr_dev(div2, "class", "container svelte-1jn24uk");
-    			add_location(div2, file, 115, 2, 2938);
+    			add_location(div1, file, 99, 4, 2841);
+    			attr_dev(div2, "class", "container svelte-as7g04");
+    			add_location(div2, file, 97, 2, 2774);
     			attr_dev(div3, "id", "clickable-area");
-    			attr_dev(div3, "class", "clickable-area svelte-1jn24uk");
-    			add_location(div3, file, 171, 4, 5871);
-    			attr_dev(dialog, "class", "billeder svelte-1jn24uk");
+    			attr_dev(div3, "class", "clickable-area svelte-as7g04");
+    			add_location(div3, file, 153, 4, 5760);
+    			attr_dev(dialog, "class", "billeder svelte-as7g04");
     			attr_dev(dialog, "id", "billeder");
-    			add_location(dialog, file, 170, 2, 5827);
-    			add_location(script0, file, 175, 2, 5991);
+    			add_location(dialog, file, 152, 2, 5716);
+    			add_location(script0, file, 157, 2, 5880);
     			if (!src_url_equal(script1.src, script1_src_value = "./renderer.js")) attr_dev(script1, "src", script1_src_value);
-    			add_location(script1, file, 181, 2, 6270);
-    			attr_dev(main, "class", "svelte-1jn24uk");
-    			add_location(main, file, 114, 0, 2837);
+    			add_location(script1, file, 163, 2, 6159);
+    			attr_dev(main, "class", "svelte-as7g04");
+    			add_location(main, file, 95, 0, 2673);
     		},
     		l: function claim(nodes) {
     			throw new Error_1("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -3787,7 +3787,7 @@ var app = (function () {
     			table1.$set(table1_changes);
 
     			if (!current || dirty[0] & /*favoriteVisible*/ 32) {
-    				set_style(div0, "height", "calc(100% - " + (/*favoriteVisible*/ ctx[5] ? "305" : "100") + "px)");
+    				set_style(div0, "height", "calc(100% - " + (/*favoriteVisible*/ ctx[5] ? '305' : '100') + "px)");
     			}
 
     			const footer_changes = {};
@@ -3872,11 +3872,18 @@ var app = (function () {
     	let favoriteVisible;
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots('App', slots, []);
-    	let loading = false;
-    	let changed = false;
-    	let vare = { Varenummer: 0, Produktnavn: "", Pris: 0 };
-    	let varer = ["DoNotSave"];
-    	let data = window.electronApi.loadJSON();
+    	let loading = false; // indicates whether we are done loading something?
+    	let changed = false; //whether there have been changes to the table
+
+    	let vare = {
+    		//boilerplate for an item
+    		Varenummer: 0,
+    		Produktnavn: "",
+    		Pris: 0
+    	};
+
+    	let varer = ["DoNotSave"]; // selve varene
+    	let data = window.electronApi.loadJSON(); //henter varer.json
 
     	//IT PREVENTS SAVING BEFORE THE DATA HAS BEEN LOADED
     	let done = false; // DO NOT CHANGE THIS
@@ -4098,7 +4105,7 @@ var app = (function () {
     		}
     	};
 
-    	$$invalidate(5, favoriteVisible = false);
+    	$$invalidate(5, favoriteVisible = false); //the favorites bar, changes css
 
     	return [
     		varer,
